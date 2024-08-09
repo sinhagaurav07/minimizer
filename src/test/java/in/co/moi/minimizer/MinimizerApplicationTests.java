@@ -8,19 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 
-import in.co.moi.minimizer.controller.TestController;
+import in.co.moi.minimizer.controller.URLHandlerController;
 
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest (classes = TestController.class)
+@SpringBootTest (classes = URLHandlerController.class)
 @ContextConfiguration
 class MinimizerApplicationTests {
 	
 	@Autowired
-	private TestController testController;
+	private URLHandlerController uRLHandlerController;
 
 	@Test
 	void contextLoads() {
-		assertNotNull(testController);
+		assertNotNull(uRLHandlerController);
 	}
 
 }

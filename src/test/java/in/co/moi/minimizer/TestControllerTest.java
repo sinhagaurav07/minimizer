@@ -11,9 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import in.co.moi.minimizer.controller.TestController;
+import in.co.moi.minimizer.controller.URLHandlerController;
 
-@SpringBootTest(classes = TestController.class)
+@SpringBootTest(classes = URLHandlerController.class)
 @ContextConfiguration
 @AutoConfigureMockMvc
 public class TestControllerTest {
