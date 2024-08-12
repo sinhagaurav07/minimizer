@@ -15,16 +15,17 @@ import lombok.Data;
 
 @Data
 @Builder
-@Table
+@Table (value = "url_detail")
 public class URLDetailDO {
 	@PrimaryKey
 	URLDetailPrimaryKey urlDetailPrimaryKey;
-	@Column
+	@Column (value = "target_url")
 	private String targetUrl;
-	@Column
-	private boolean isActive;
-	@Column
+	@Column (value = "is_active")
+	private Boolean isActive;
+	@Column (value = "created_at")
 	private Date creationDate;
-	@Column
+	@Column (value = "modified_at")
 	private Date modifyDate;
+	
 }

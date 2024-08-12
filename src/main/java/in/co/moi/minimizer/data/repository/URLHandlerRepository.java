@@ -10,4 +10,6 @@ import in.co.moi.minimizer.data.model.URLDetailPrimaryKey;
 @Repository
 public interface URLHandlerRepository extends CassandraRepository<URLDetailDO, URLDetailPrimaryKey> {
 
+	//void deleteById(URLDetailDO urlDetailDO);
+
 }

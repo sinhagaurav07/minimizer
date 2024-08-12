@@ -6,4 +6,5 @@ import lombok.Data;
 public class URLCreateDTO {
 	
 	private String targetUrl;
+
 }

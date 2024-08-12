@@ -12,6 +12,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class URLDetailPrimaryKey {
 
+	public URLDetailPrimaryKey() {
+		// TODO Auto-generated constructor stub
+	}
 	@PrimaryKeyColumn(name = "user_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
 	private String userId;
 	@PrimaryKeyColumn(name = "shortend_url", ordinal = 1, type = PrimaryKeyType.PARTITIONED)

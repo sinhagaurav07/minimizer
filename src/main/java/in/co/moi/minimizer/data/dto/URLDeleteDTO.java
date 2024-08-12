@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class URLDeleteDTO {
 
-	private String targetUrl;
+	private String shortendURL;
 
 }
