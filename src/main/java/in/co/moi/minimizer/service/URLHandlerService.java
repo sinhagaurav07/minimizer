@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.co.moi.minimizer.data.dao.URLDetailDAO;
 import in.co.moi.minimizer.data.dto.URLActivateStateDTO;
 import in.co.moi.minimizer.data.dto.URLCreateDTO;
 import in.co.moi.minimizer.data.dto.URLDeleteDTO;
@@ -21,12 +22,19 @@ import in.co.moi.minimizer.data.repository.URLHandlerRepository;
 import in.co.moi.minimizer.utils.MinimizerUtility;
 
 @Service
-
 public class URLHandlerService {
 
 	@Autowired
-	URLHandlerRepository urlHandlerRepository;
-
+	private URLHandlerRepository urlHandlerRepository;
+	
+	@Autowired
+	private URLDetailDAO urlDetailDAO;
+	
+	/*public  URLHandlerService(URLDetailDAO urlDetailDAO, URLHandlerRepository urlHandlerRepository) {
+		this.urlDetailDAO = urlDetailDAO;
+		this.urlHandlerRepository = urlHandlerRepository;
+	}*/
+	
 	public String createURLHandler(String userId, URLCreateDTO urlCreateDTO) {
 		String shortendUrl = MinimizerUtility.getMd5(urlCreateDTO.getTargetUrl());
 
@@ -89,23 +97,8 @@ public class URLHandlerService {
 			return "Activate Status is not updated";
 	}
 
-	public List<URLDetailDTO> searchURLHandler(String userId, URLSearchDTO urlSearchDTO) {
-		String shortendURL = urlSearchDTO.getShortendUrl();
-		List<URLDetailDTO> list = new ArrayList<URLDetailDTO>();
-		URLDetailPrimaryKey URLDetailPrimaryKey = new URLDetailPrimaryKey(userId, shortendURL);
-		Optional<URLDetailDO> out = urlHandlerRepository.findById(URLDetailPrimaryKey);
-		if (out.isPresent()) {
-			URLDetailDO urlDetailDO = out.get();
-			URLDetailDTO urlDetailDTO = new URLDetailDTO();
-			urlDetailDTO.setActive(urlDetailDO.getIsActive());
-			urlDetailDTO.setShortendUrl(shortendURL);
-			urlDetailDTO.setUserId(userId);
-			urlDetailDTO.setCreatedAt(urlDetailDO.getCreationDate());
-			urlDetailDTO.setModifiedAt(urlDetailDO.getModifyDate());
-			urlDetailDTO.setTargetUrl(urlDetailDO.getTargetUrl());
-			list.add(urlDetailDTO);
-		}
-		return list;
+	public URLDetailDTO searchURLHandler(String userId, URLSearchDTO urlSearchDTO) {
+		return urlDetailDAO.getURLDetailByPrimaryKey(userId, urlSearchDTO.getShortendUrl());
 	}
 
 	public List<URLDetailDTO> searchByUserURLHandler(String userId) {

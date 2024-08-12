@@ -63,10 +63,10 @@ public class URLHandlerController {
 	}
 
 	@GetMapping("/search")
-	public List<URLDetailDTO> searchURL(@RequestHeader Map<String, String> headers,
+	public URLDetailDTO searchURL(@RequestHeader Map<String, String> headers,
 			@RequestBody URLSearchDTO urlSearchDTO) {
 		String userId = headers.get("user_id");
-		List<URLDetailDTO> response = urlHandlerService.searchURLHandler(userId, urlSearchDTO);
+		URLDetailDTO response = urlHandlerService.searchURLHandler(userId, urlSearchDTO);
 		return response;
 
 	}
